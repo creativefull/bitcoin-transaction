@@ -145,11 +145,13 @@ function getTransactionSize (numInputs, numOutputs) {
 }
 
 function getFees (provider, feeName) {
-	if (typeof feeName === 'number') {
-		return new Promise.resolve(feeName);
-	} else {
-		return provider(feeName);
-	}
+	return new Promise((resolve, reject) => {
+		if (typeof feeName === 'number') {
+			return resolve(feeName);
+		} else {
+			return provider(feeName);
+		}
+	})
 }
 
 function sendTransaction (options) {
