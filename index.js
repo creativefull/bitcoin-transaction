@@ -17,7 +17,7 @@ var providers = {
 				});
 			},
 			blockchain: function (addr) {
-				return request.get('https://blockchain.info/q/addressbalance/' + addr + '?confirmations=6').send().then(function (res) {
+				return request.get('https://blockchain.info/q/addressbalance/' + addr + '/balance').send().then(function (res) {
 					return parseFloat(res.body);
 				});
 			}
