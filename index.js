@@ -1,5 +1,5 @@
 var bitcoin = require('bitcoinjs-lib');
-var request = require('superagent');
+var request = require('request');
 
 var BITCOIN_DIGITS = 8;
 var BITCOIN_SAT_MULT = Math.pow(10, BITCOIN_DIGITS);
@@ -12,19 +12,24 @@ var providers = {
 	balance: {
 		mainnet: {
 			blockexplorer: function (addr) {
-				return request.get('https://blockexplorer.com/api/addr/' + addr + '/balance').send().then(function (res) {
-					return parseFloat(res.body);
+				return new Promise((resolve, reject) => {
+					request.get('https://blockexplorer.com/api/addr/' + addr + '/balance', function (err, res, body) {
+						return resolve(parseFloat(body));
+					})
 				});
 			},
 			blockchain: function (addr) {
-				return request.get('https://blockchain.info/q/addressbalance/' + addr + '/balance').send().then(function (res) {
-					return parseFloat(res.body);
+				return new Promise((resolve, reject) => {
+					request.get('https://blockchain.info/q/addressbalance/' + addr + '/balance', function (err, res, body) {
+						return resolve(parseFloat(body));
+					})
 				});
 			}
 		},
 		testnet: {
 			blockexplorer: function (addr) {
 				return request.get('https://testnet.blockexplorer.com/api/addr/' + addr + '/balance').send().then(function (res) {
+					console.log("APAKAH DIA MASUK TESTNET")
 					return parseFloat(res.body);
 				});
 			}
