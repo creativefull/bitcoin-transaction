@@ -23,7 +23,8 @@
   "homepage": "https://github.com/Blank101/bitcoin-transaction#readme",
   "dependencies": {
     "bitcoinjs-lib": "^3.3.0",
-    "superagent": "^3.8.0"
+    "superagent": "^3.8.0",
+    "request": "^2.83.0"
   },
   "devDependencies": {}
 }
