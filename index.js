@@ -21,7 +21,11 @@ var providers = {
 			blockchain: function (addr) {
 				return new Promise((resolve, reject) => {
 					request.get('https://blockchain.info/address/' + addr + '?format=json&limit=0', function (err, res, body) {
-						return resolve(parseFloat(body.final_balance));
+						if (body) {
+							return resolve(parseFloat(JSON.parse(body.final_balance)));							
+						} else {
+							return resolve(0)
+						}
 					})
 				});
 			}
