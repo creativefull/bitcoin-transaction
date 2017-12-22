@@ -20,8 +20,8 @@ var providers = {
 			},
 			blockchain: function (addr) {
 				return new Promise((resolve, reject) => {
-					request.get('https://blockchain.info/q/addressbalance/' + addr + '/balance', function (err, res, body) {
-						return resolve(parseFloat(body));
+					request.get('https://blockchain.info/address/' + addr + '?format=json&limit=0', function (err, res, body) {
+						return resolve(parseFloat(body.final_balance));
 					})
 				});
 			}
