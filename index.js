@@ -22,7 +22,7 @@ var providers = {
 				return new Promise((resolve, reject) => {
 					request.get('https://blockchain.info/address/' + addr + '?format=json&limit=0', function (err, res, body) {
 						if (body) {
-							return resolve(parseFloat(JSON.parse(body.final_balance)));							
+							return resolve(parseFloat(JSON.parse(body).final_balance));							
 						} else {
 							return resolve(0)
 						}
