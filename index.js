@@ -14,21 +14,17 @@ var providers = {
 		mainnet: {
 			blockexplorer: function (addr) {
 				return new Promise((resolve, reject) => {
-					request.get('https://blockexplorer.com/api/addr/' + addr + '/balance', function (err, res, body) {
+					request2.get('https://blockexplorer.com/api/addr/' + addr + '/balance', function (err, res, body) {
 						return resolve(parseFloat(body));
 					})
 				});
 			},
 			blockchain: function (addr) {
 				return new Promise((resolve, reject) => {
-					request.get('https://blockchain.info/address/' + addr + '?format=json&limit=0', function (err, res, body) {
-						if (body) {
-							return resolve(parseFloat(JSON.parse(body).final_balance));							
-						} else {
-							return resolve(0)
-						}
-					})
-				});
+					request.get('https://blockchain.info/q/addressbalance/' + addr + '?confirmations=6').send().then(function (res) {
+						return resolve(parseFloat(res.body));
+					});
+				})
 			}
 		},
 		testnet: {
