@@ -21,10 +21,10 @@ var providers = {
 			},
 			blockchain: function (addr) {
 				return new Promise((resolve, reject) => {
-					request.get('https://blockchain.info/q/addressbalance/' + addr + '?confirmations=6').send().then(function (res) {
-						return resolve(parseFloat(res.body));
-					});
-				})
+					request2.get('https://blockchain.info/q/addressbalance/' + addr + '?confirmations=6', function (err, res, body) {
+						return resolve(parseFloat(body));
+					})
+				});
 			}
 		},
 		testnet: {
