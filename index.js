@@ -1,5 +1,6 @@
 var bitcoin = require('bitcoinjs-lib');
-var request = require('request');
+var request = require('superagent');
+var request2 = require('request');
 
 var BITCOIN_DIGITS = 8;
 var BITCOIN_SAT_MULT = Math.pow(10, BITCOIN_DIGITS);
