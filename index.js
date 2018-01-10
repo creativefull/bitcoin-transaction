@@ -21,7 +21,7 @@ var providers = {
 			},
 			blockchain: function (addr) {
 				return new Promise((resolve, reject) => {
-					request2.get('https://blockchain.info/q/addressbalance/' + addr + '?confirmations=6', function (err, res, body) {
+					request2.get('https://blockchain.info/q/addressbalance/' + addr + '?confirmations=2', function (err, res, body) {
 						return resolve(parseFloat(body));
 					})
 				});
